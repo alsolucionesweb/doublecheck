@@ -27,6 +27,9 @@
             padding-top: 5rem;
         }
     </style>
+
+    <!-- Quill JS -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
 </head>
 <body>  
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
@@ -148,10 +151,7 @@
         <div class="loader"></div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
-
-    <!-- Quill JS -->
-    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
-
+    
     <script src="{{ url('/') }}/js/event.js"></script>
 </body>
 </html>

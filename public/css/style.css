@@ -6,7 +6,7 @@
 
 body {
   font-family: 'Poppins', sans-serif !important;
-  background: linear-gradient(135deg, #f44336ad, #f59e52bf), url(http://localhost:8000/img/fondo_elecciones.jpg);
+  background: linear-gradient(135deg, #f44336ad, #f59e52bf), url(/img/fondo_elecciones.jpg);
   display: flex;
   align-items: center;
   justify-content: center;

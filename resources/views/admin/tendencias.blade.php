@@ -195,6 +195,7 @@
   </div>
 </div>
 
+<script src="{{ url('/') }}/js/editorHTML.js"></script>
 <script src="{{ url('/') }}/js/tendencias.js"></script>
 
 @endsection
