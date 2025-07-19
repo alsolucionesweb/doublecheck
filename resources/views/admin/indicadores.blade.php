@@ -12,7 +12,9 @@
                 <div class="navbar-brand">Configuración de indicadores</div>
                 <ul class="nav nav-pills">                    
                     <li class="nav-item">
-                        <a class="nav-link" role="button" data-bs-toggle="modal" data-bs-target="#modalCrear">Crear</a>
+                        <a class="nav-link" role="button" data-bs-toggle="modal" data-bs-target="#modalCrear">
+                          <i class="fa-solid fa-plus"></i> Nuevo
+                        </a>
                     </li>                    
                 </ul>
             </nav>

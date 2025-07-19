@@ -12,7 +12,9 @@ class HomeController extends Controller
 {        
     public function index()
     {   
-        $candidatos = Candidatos::where('Estado', true)->get();
+        $candidatos = Candidatos::where('Estado', true)
+        ->orderBy('puntuacion', 'desc')
+        ->get();        
         return view('home', ['candidatos' => $candidatos]);
     }
 

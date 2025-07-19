@@ -24,7 +24,7 @@
     <style>
         body {
             display: block;
-            padding-top: 5rem;
+            background: linear-gradient(135deg, #e3e4e8, #f2e7c4);
         }
     </style>
 
@@ -43,69 +43,50 @@
             <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
         </symbol>
     </svg>
-    <nav class="navbar bg-danger-subtle fixed-top">
-        <div class="container-fluid bg-danger-subtle">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <img src="{{ url('/') }}/img/logo.png" alt="">
             </a>
-            <p class="text-center mt-3 name">Hola, {{$_SESSION['user']['name']}}</p>                                        
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-            
-            <span class="navbar-toggler-icon"></span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="offcanvas offcanvas-start bg-danger-subtle" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-            <div class="offcanvas-header">                
-                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Hola, {{$_SESSION['user']['name']}}</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                    <li>
-                        <hr class="divider">
-                    </li>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{ url('/') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link disabled" href="{{ url('/') }}/indicadores">Indicadores</a>
+                        <a class="nav-link" href="{{ url('/') }}/indicadores">Indicadores</a>
                     </li>
                     <li class="nav-item">
-                        <a class="btn btn-outline-warning d-block disabled" href="{{ url('/') }}/descargar">Descargar Reporte</a>
+                        <a class="nav-link" href="{{ url('/') }}/descargar">Descargar reporte</a>
                     </li>
-
-                     @if ($_SESSION['user']['is_admin'])
-                    <li>
-                        <hr class="divider">
-                    </li>
+                    
+                    @if ($_SESSION['user']['is_admin'])
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Administrar
                         </a>
-                        <ul class="dropdown-menu">
-                        <li><a class="dropdown-item disabled" href="{{ url('/') }}/admin/usuarios" disabled>Usuarios</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="{{ url('/') }}/admin/candidatos">Candidatos</a></li>
-                        <li><a class="dropdown-item" href="{{ url('/') }}/admin/indicadores">Indicadores</a></li>
-                        <li><a class="dropdown-item" href="{{ url('/') }}/admin/tendencias">Tendencias</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="{{ url('/') }}/admin/descargable">Descargable</a></li>
+                        <ul class="dropdown-menu">                            
+                            <li><a class="dropdown-item disabled" href="{{ url('/') }}/admin/usuarios" disabled>Usuarios</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="{{ url('/') }}/admin/candidatos">Candidatos</a></li>
+                            <li><a class="dropdown-item" href="{{ url('/') }}/admin/indicadores">Indicadores</a></li>
+                            <li><a class="dropdown-item" href="{{ url('/') }}/admin/tendencias">Tendencias</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="{{ url('/') }}/admin/descargable">Descargable</a></li>
                         </ul>
                     </li>
                     @endif
-
-                    <li>
-                        <hr class="divider">
-                    </li>
                     <li class="nav-item">
-                        <a class="btn btn-outline-danger d-block" href="{{ url('/') }}/logout">Salir</a>
+                        <a class="nav-link btn-logout" href="{{ url('/') }}/logout">Salir</a>
                     </li>
-
-                </ul>                
-            </div>
+                </ul>
             </div>
         </div>
     </nav>
