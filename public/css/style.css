@@ -15,6 +15,14 @@ body {
   background-size: cover;
 }
 
+.mobile {
+  display: none;
+}
+
+.desktop {
+  display: block;
+}
+
 .container {
   max-width: 400px;
   width: 100%;
@@ -400,6 +408,13 @@ p.card-text {
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     text-align: center;
     position: relative;
+    margin: auto;
+    cursor: pointer;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.candidato-box:hover{
+  box-shadow: 0 5px 15px #facc15;
 }
 
 .candidato-box h3 {
@@ -454,6 +469,32 @@ p.card-text {
 
   /*end box candidato*/
 
+.carousel-control-next-icon,
+.carousel-control-prev-icon
+ {
+   background-color: black;
+    border-radius: 50%;
+    box-shadow: 0px 0px 4px 2px black;
+}
+.carousel-control-next {
+    right: -3rem;
+}
+.carousel-control-prev {
+    left: -3rem;
+}
+
+.tendenciaSelect {
+  background-color: #facc1552 !important;
+}
+.fa-newspaper{
+  color:#facc15;
+  margin-right: 1rem;
+}
+
+.accordion-button:not(.collapsed){
+  background-color: #facc1552 !important;
+}
+
 @media (max-width: 480px) {
   .header h1 {
     font-size: 20px;
@@ -473,5 +514,17 @@ p.card-text {
 
   body{
     background-size: 200% 100%;
+  }
+
+  .mobile {
+    display: block;
+  }
+
+  .desktop {
+    display: none;
+  }
+
+  .card-title {
+    font-size: 1.2rem;
   }
 }

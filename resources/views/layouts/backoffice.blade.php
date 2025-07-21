@@ -113,12 +113,15 @@
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 @endif
-                
+
+                @if ($_SESSION['user']['is_admin'])
+
                 <div class="title-container">
                     <h3>@yield('title', 'Default')</h3>
                     <p class="text-muted">@yield('subtitle', 'Default')</p>                    
                 </div>
-
+                
+                @endif
                 
                 <div class="row g-3 row-cols-1 row-cols-12">                    
                     @yield('content')
