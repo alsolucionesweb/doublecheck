@@ -12,6 +12,7 @@ class DescargableController extends Controller
     private $success = null;
     public function index()
     {
+        $_SESSION['menu'] = 'administrar';
         $this->flashMessages();
 
         $descargables = Descargable::all();

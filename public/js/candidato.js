@@ -97,12 +97,24 @@ function verIndicadoresCandidato(params, idSemana) {
     
 }
 
+function verContenido(params) {
+    
+    document.querySelector('#candidatoPreviewContenido').innerHTML = params.name;
+    document.querySelector('#contenidoPreview').innerHTML = params.contenido;
+
+    const modal = new bootstrap.Modal('#modalContenidoPreview', {
+        keyboard: false
+    })
+    modal.show();
+}
+
 function editarCandidato(params) {
     console.log('Editar candidato:', params);    
 
     document.getElementById('id').value = params.id;
     document.getElementById('name').value = params.name;
     document.getElementById('puntuacion').value = params.puntuacion;
+    document.querySelector('#editor-editar .ql-editor').innerHTML = params.contenido;
 
     const host = location.protocol+'//'+location.host;
     document.getElementById('previewImagenActualizar').src = host+params.imagen;

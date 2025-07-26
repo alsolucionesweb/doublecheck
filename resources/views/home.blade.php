@@ -22,7 +22,7 @@
                             <div class="row m-auto">
                                 @for ($i = 0; $i <= 3; $i++)
                                     <div class="col">
-                                        <div class="candidato-box">        
+                                        <div class="candidato-box" onclick="location.href = '/candidato/{{$candidatos[$i]->id}}'">        
                                             <h3>{{$candidatos[$i]->name}}</h3>
                                             <div class="circle" style="background: conic-gradient(#facc15 {{($candidatos[$i]->puntuacion/(5/100))}}%, #e5e7eb 0%)">
                                                 <div class="circle-content">

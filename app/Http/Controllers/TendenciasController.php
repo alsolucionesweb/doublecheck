@@ -12,6 +12,8 @@ class TendenciasController extends Controller
     private $success = null;
     public function index()
     {
+        $_SESSION['menu'] = 'administrar';
+        
         $this->flashMessages();
 
         $tendencias = Tendencias::all();

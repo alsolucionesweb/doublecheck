@@ -20,16 +20,22 @@
     <!-- Font Awesome - Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <!--link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.dataTables.min.css"-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/fixedcolumns/4.3.0/css/fixedColumns.dataTables.min.css">
+
     <!-- Estos CSS únicos del Layer Backoffice -->
     <style>
         body {
             display: block;
-            background: linear-gradient(135deg, #e3e4e8, #f2e7c4);
+            background: linear-gradient(135deg, #e3e4e8e8, #f2e7c4), url(/img/fondo_elecciones.jpg);
+            background-size: 100%;
         }
     </style>
 
     <!-- Quill JS -->
     <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+        
 </head>
 <body>  
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
@@ -54,17 +60,17 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ url('/') }}">Home</a>
+                        <a class="nav-link @if ($_SESSION['menu'] == 'home') active @endif" aria-current="page" href="{{ url('/') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/') }}/indicadores">Indicadores</a>
+                        <a class="nav-link @if ($_SESSION['menu'] == 'indicadores') active @endif" href="{{ url('/') }}/indicadores">Indicadores</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('/') }}/descargar">Descargar reporte</a>
                     </li>
                     
                     @if ($_SESSION['user']['is_admin'])
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown @if ($_SESSION['menu'] == 'administrar') active @endif">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Administrar
                         </a>
@@ -76,6 +82,7 @@
                             <li><a class="dropdown-item" href="{{ url('/') }}/admin/candidatos">Candidatos</a></li>
                             <li><a class="dropdown-item" href="{{ url('/') }}/admin/indicadores">Indicadores</a></li>
                             <li><a class="dropdown-item" href="{{ url('/') }}/admin/tendencias">Tendencias</a></li>
+                            <li><a class="dropdown-item" href="{{ url('/') }}/admin/semanas">Semanas</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -90,7 +97,7 @@
             </div>
         </div>
     </nav>
-    <div class="content container-fluid">
+    <div class="content container-fluid  p-4 pt-0 pb-0">
         <div class="row">            
             <div class="col py-3">
 
@@ -137,5 +144,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
     
     <script src="{{ url('/') }}/js/event.js"></script>
+    
 </body>
 </html>

@@ -28,7 +28,7 @@
                           <th class="text-center" scope="col">CANDIDATO</th>
                           <th class="text-center" scope="col">CLASIFICACIÓN</th>
                           <th class="text-center" scope="col">ESTADO</th>
-                          <th class="text-center" scope="col">INDICADORES</th>
+                          <th class="text-center" scope="col">CONTENIDO</th>
                           <th class="text-center" scope="col">ACCIONES</th>
                       </tr>
                   </thead>
@@ -52,7 +52,7 @@
                                 @endif
                               </td>
                               <td class="text-center">
-                                <button type="button" class="btn btn-primary" onclick="verIndicadoresCandidato({{ $candidato }})">
+                                <button type="button" class="btn btn-primary" onclick="verContenido({{ $candidato }})">
                                       <i class="fa-solid fa-eye"></i>
                                   </button>
                               </td>
@@ -79,13 +79,13 @@
 <!-- Modal Crear -->
 
 <div class="modal fade" id="modalCrear" tabindex="-1" aria-labelledby="modalCrearLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog max-w">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="modalCrearLabel">Nuevo Candidato</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form method="POST" action="{{ url('/') }}/admin/candidatos" enctype="multipart/form-data">
+      <form method="POST" action="{{ url('/') }}/admin/candidatos" enctype="multipart/form-data" onsubmit="return prepararEnvio();">
         <div class="modal-body">        
           <div class="row">
               <div class="col-12 col-md-6">
@@ -97,7 +97,7 @@
                   <div class="mb-3">
                       <label for="puntaje" class="form-label">Clasificación</label>
                       <input type="number" step="0.01" class="form-control" name="puntuacion">
-                  </div>
+                  </div>                  
                   <div class="mb-3 form-check form-switch">
                       <input type="checkbox" class="form-check-input" role="switch" name="activo" checked>
                       <label class="form-check-label" for="activo">Activo</label>
@@ -109,7 +109,25 @@
                       <label for="imagen" class="form-label">Imagen</label>
                       <input class="form-control" type="file" id="imagenCrear" name="imagen" accept="image/*">
                   </div>
-              </div>            
+              </div>    
+              <div class="col-12">
+                <div class="mb-3">
+                  <span>Contenido</span>
+                  <div id="editor-toolbar" class="mb-2">
+                    <!-- Puedes personalizar las herramientas -->
+                    <button class="ql-bold"></button>
+                    <button class="ql-italic"></button>
+                    <button class="ql-underline"></button>
+                    <button class="ql-link"></button>
+                  </div>
+
+                  <div class="editorHTML" id="editor" style="height: 200px; background-color: #fff;"></div>
+
+                  <!-- Campo oculto para enviar el contenido -->                    
+                  <textarea name="contenido" id="editor-content" class="d-none"></textarea>
+                  
+                </div>
+              </div>        
           </div>      
         </div>
         <div class="modal-footer">          
@@ -117,6 +135,29 @@
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
         </div>
       </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal verContenidoPreview -->
+<div class="modal fade" id="modalContenidoPreview" tabindex="-1" aria-labelledby="modalContenidoPreviewLabel" aria-hidden="true">
+  <div class="modal-dialog max-w">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="modalContenidoPreviewLabel">Contenido</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>        
+      <div class="modal-body">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-header" id="candidatoPreviewContenido"></h5>
+            <div id="contenidoPreview"></div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">        
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>        
+      </div>      
     </div>
   </div>
 </div>
@@ -159,13 +200,13 @@
 
 <!-- Modal Editar-->
 <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog max-w">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="modalEditarLabel">Editar candidato</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form method="POST" action="{{ url('/') }}/admin/candidatos/editar" enctype="multipart/form-data">
+      <form method="POST" action="{{ url('/') }}/admin/candidatos/editar" enctype="multipart/form-data" onsubmit="return prepararEnvioEditar();">
         <div class="modal-body">        
           <div class="row">
               <div class="col-12 col-md-6">
@@ -178,7 +219,7 @@
                   <div class="mb-3">
                       <label for="puntaje" class="form-label">Clasificación</label>
                       <input type="number" step="0.01" class="form-control" id="puntuacion" name="puntuacion">
-                  </div>
+                  </div>                  
                   <div class="mb-3 form-check form-switch">
                       <input type="checkbox" class="form-check-input" role="switch" id="activo" name="activo" checked>
                       <label class="form-check-label" for="activo">Activo</label>
@@ -190,6 +231,24 @@
                       <label for="imagen" class="form-label">Imagen</label>
                       <input class="form-control" type="file" id="imagenActualizar" name="imagen" accept="image/*">
                   </div>
+              </div>
+              <div class="col-12">
+                <div class="mb-3">
+                  <h5>Contenido</h5>
+                  <div id="editor-toolbar-editar" class="mb-2">
+                    <!-- Puedes personalizar las herramientas -->
+                    <button class="ql-bold"></button>
+                    <button class="ql-italic"></button>
+                    <button class="ql-underline"></button>
+                    <button class="ql-link"></button>
+                  </div>
+
+                  <div class="editorHTML" id="editor-editar" style="height: 200px; background-color: #fff;"></div>
+
+                  <!-- Campo oculto para enviar el contenido -->                    
+                  <textarea name="contenido" id="editor-content-editar" class="d-none"></textarea>
+                  
+                </div>
               </div>
           </div>      
         </div>
@@ -228,4 +287,5 @@
 </div>
 
 <script src="{{ url('/') }}/js/candidato.js"></script>
+<script src="{{ url('/') }}/js/editorHTML.js"></script>
 @endsection

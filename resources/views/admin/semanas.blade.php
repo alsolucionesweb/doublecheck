@@ -40,11 +40,11 @@
                               <td>                                
                                 {{ $semana->name }}
                               </td>  
-                              <td>                                
-                                {{ $semana->inicio }}
+                              <td>                           
+                                {{ \Carbon\Carbon::parse($semana->fecha_inicio)->format('d/m/Y') }}
                               </td> 
-                              <td>                                
-                                {{ $semana->fin }}
+                              <td>                       
+                                {{ \Carbon\Carbon::parse($semana->fecha_fin)->format('d/m/Y') }}
                               </td>   
                               <td class="text-center">
                                 <a class="btn btn-primary" href="{{ url('/') }}/admin/semanas/{{$semana->id}}">

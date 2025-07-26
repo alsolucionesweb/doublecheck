@@ -339,12 +339,15 @@ svg.bi.flex-shrink-0 {
     border: solid 1px red;   
 }
 .navbar-toggler {
-  border-color: white !important;
-  color: white !important;
+  border-color: #facc15 !important;
+  color: #000 !important;
 }
 .navbar-toggler-icon{
-  color: white !important;
-  filter: invert(1);
+  color: #000 !important;
+}
+.navbar-toggler:focus
+ {
+    box-shadow: 0 0 0 #facc15;
 }
 .offcanvas-title{
   color: white !important;
@@ -380,10 +383,13 @@ p.card-text {
     text-decoration: underline;
   }
   .card-title {
-      font-size: 16px;
-      font-weight: 500;
-      color: #facc15;
-    }
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #facc15;
+  }
+  .card-title span {
+    color:#333
+  }
   .circle-progress {
     width: 100px;
     height: 100px;
@@ -415,6 +421,16 @@ p.card-text {
 }
 .candidato-box:hover{
   box-shadow: 0 5px 15px #facc15;
+}
+
+.candidato-box.zoom{
+  zoom: 160%;
+}
+
+.content-candidato .card-body {
+    max-height: 30rem;
+    height: 30rem;
+    overflow-y: auto;
 }
 
 .candidato-box h3 {
@@ -477,10 +493,10 @@ p.card-text {
     box-shadow: 0px 0px 4px 2px black;
 }
 .carousel-control-next {
-    right: -3rem;
+    right: -5.5rem;
 }
 .carousel-control-prev {
-    left: -3rem;
+    left: -5.5rem;
 }
 
 .tendenciaSelect {
@@ -493,6 +509,60 @@ p.card-text {
 
 .accordion-button:not(.collapsed){
   background-color: #facc1552 !important;
+}
+
+.modal-dialog.max-w {
+    max-width: 90vw !important;
+}
+
+#content-tendencia img,
+.content-candidato img,
+.accordion-body img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Fijar ancho de la primera columna */
+
+#tablaIndicadores th,
+#tablaIndicadores td{
+  text-align: center !important;
+  min-width: 120px;
+}
+
+table.dataTable thead th {
+  text-align: center !important;
+}
+
+#tablaIndicadores th:first-child,
+#tablaIndicadores td:first-child {
+    width: auto;
+    min-width: 200px;
+    white-space: nowrap;
+    background-color: beige;
+    font-weight: 300;
+    text-align: left !important;
+}
+
+
+/* Asegura que el header quede encima de celdas */
+#tablaIndicadores th {
+    z-index: 3;
+}
+
+.dataTable thead tr th, .table-striped-columns>:not(caption)>tr>th>:nth-child(2n) {
+    background: beige;
+    box-shadow: inset 0 0 0 9999px beige;
+}
+
+
+nav.navbar.navbar-warning.bg-warning {
+    background: linear-gradient(135deg, #fffceb, #fefefe) !important;
+    border-radius: 30px;
+}
+
+.navbar-warning .navbar-brand{
+  margin-left: 2rem;
 }
 
 @media (max-width: 480px) {
@@ -526,5 +596,75 @@ p.card-text {
 
   .card-title {
     font-size: 1.2rem;
+    height: auto;
+    width: 80vw;
+    text-align: center;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .card-title span {
+    display: block;
+    margin: auto;
+  }
+
+  .navbar-warning .navbar-brand{
+    margin-left: auto;
+  }
+
+  .navbar-warning .dropdown{
+    margin: auto;
+    display: block;
+    width: 100%;
+  }
+
+  .navbar-warning .dropdown button{
+    width: 100%;
+  }
+
+  .dt-buttons {
+    text-align: center;
+  }
+
+  .carousel-control-next {
+    right: -1.125rem;
+    display: none;
+  }
+  .carousel-control-prev {
+    left: -1.125rem;
+    display: none;
+  }
+  li.nav-item {
+    margin: auto;
+  }
+  a.nav-link {
+    width: 90vw;
+    margin: auto;
+    text-align: center;
+  }
+  li.nav-item {
+    margin: 5px auto;
+  }
+  .navbar-collapse {
+    margin-top: 5px;
+  }
+  .navbar-nav {
+    box-shadow: 0px 2px 6px 1px #0000006e;
+  }
+  a.nav-link.btn-logout {
+    color: red;
+  }
+  body {
+    overflow-x: hidden;
+  }
+
+  .candidato-box.zoom{
+    zoom: 100%;
+  }
+
+  .content-candidato .card-body {
+    max-height: none;
+    height: auto;
   }
 }

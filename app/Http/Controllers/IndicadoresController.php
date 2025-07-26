@@ -9,11 +9,13 @@ use App\Models\CandidatoIndicador;
 
 
 class IndicadoresController extends Controller
-{
+{    
     private $error = null;
     private $success = null;
     public function index()
     {
+        $_SESSION['menu'] = 'administrar';
+        
         $this->flashMessages();
 
         $indicadores = Indicadores::all();

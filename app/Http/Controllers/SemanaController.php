@@ -13,14 +13,49 @@ class SemanaController extends Controller
     private $success = null;
     public function index()
     {
+        $_SESSION['menu'] = 'administrar';
+        
         $this->flashMessages();
 
-        $semanas = Semanas::all();
+        $semanas = Semana::all();
         return view('admin/semanas', [
             'semanas' => $semanas,
             'error' => $this->error,
             'success' => $this->success
         ]);
+    }
+
+    public function post(Request $request)
+    {        
+        //validar indicador repetido
+
+        $valSemana = Semana::where('name', $request->input('name'))->first();
+        if ($valSemana) {            
+            $_SESSION['error'] = 'Semana ya existe.';
+            return redirect('/admin/semanas');
+        }
+        
+        //Validar si la semana queda activa
+        $activo = true;
+        if( $request->input('activo') != 'on') {
+            $activo = false;
+        }
+
+        //Guardar la semana
+        $semana = new Semana();
+        $semana->name = $request->input('name');
+        $semana->fecha_inicio = $request->input('inicio');
+        $semana->fecha_fin = $request->input('fin');
+        $semana->estado = $activo; // Por defecto, estado es 1 (activo)
+        $semana->save();
+
+        if($semana){
+            $_SESSION['success'] = 'Semana creada correctamente.';
+        }else{
+            $_SESSION['error'] = 'No se pudo crear la semana, por favor intentelo más tarde.';
+        }
+        
+        return redirect('/admin/semanas');
     }
 
     private function flashMessages(){

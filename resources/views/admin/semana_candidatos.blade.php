@@ -9,11 +9,11 @@
     <div class="card">
         <div class="card-body">
             <nav id="navbar-example2" class="navbar bg-danger-subtle px-3 mb-3">
-                <div class="navbar-brand">Configuración de Indicadores para la semana: {{$semana->name}}</div>
+                <div class="navbar-brand">Configuración de Indicadores para la semana: <b style="color:black">{{$semana->name}}</b></div>                
                 <ul class="nav nav-pills">                    
                     <li class="nav-item">
-                        <a class="nav-link" role="button" data-bs-toggle="modal" data-bs-target="#modalCrear">
-                          <i class="fa-solid fa-plus"></i> Nuevo
+                        <a class="nav-link" href="{{ url('/') }}/admin/semanas">
+                          <i class="fa-solid fa-arrow-rotate-left"></i> Volver
                         </a>
                     </li>                    
                 </ul>

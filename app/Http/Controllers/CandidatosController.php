@@ -14,6 +14,8 @@ class CandidatosController extends Controller
     
     public function index()
     {
+        $_SESSION['menu'] = 'administrar';
+        
         $this->flashMessages();
 
         $candidatos = Candidatos::all();
@@ -81,6 +83,7 @@ class CandidatosController extends Controller
         $candidato = new Candidatos();
         $candidato->name = $request->input('name');
         $candidato->imagen = $url; // Guardar la URL de la imagen
+        $candidato->contenido = $request->input('contenido');
         $candidato->puntuacion = $request->input('puntuacion');
         $candidato->estado = $activo; // Por defecto, estado es 1 (activo)
         $candidato->save();
@@ -146,6 +149,7 @@ class CandidatosController extends Controller
         //Actualizar el candidato        
         $candidato->name = $request->input('name');
         $candidato->imagen = $url; // Guardar la URL de la imagen
+        $candidato->contenido = $request->input('contenido');
         $candidato->puntuacion = $request->input('puntuacion');
         $candidato->estado = $activo; // Por defecto, estado es 1 (activo)
         $candidato->save();

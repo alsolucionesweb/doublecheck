@@ -16,11 +16,13 @@
 $router->post('/login', 'Auth\AuthController@login');
 $router->get('/login', 'Auth\AuthController@showLoginForm');
 
-$router->get('/indicadores/candidato/{id}', 'CandidatoIndicadorController@indicadoresCandidato');
+$router->get('/indicadores/candidato/{idSemana}/{id}', 'CandidatoIndicadorController@indicadoresCandidato');
 
 
 $router->group(['middleware' => 'session.auth'], function () use ($router) {  
+    
     $router->get('/', 'HomeController@index');
+    $router->get('/indicadores', 'HomeController@indicadores');
     $router->get('/candidato/{id}', 'HomeController@getCandidato');    
 });
 
@@ -54,6 +56,14 @@ $router->group(['prefix' => 'admin','middleware' => 'admin'], function () use ($
         $router->post('', 'TendenciasController@post');        
         $router->post('/editar', 'TendenciasController@put');
         $router->post('/eliminar', 'TendenciasController@delete');
+    });
+
+    $router->group(['prefix' => 'semanas'], function () use ($router) {
+        $router->get('', 'SemanaController@index');
+        $router->post('', 'SemanaController@post');        
+        $router->post('/editar', 'SemanaController@put');
+        $router->post('/eliminar', 'SemanaController@delete');
+        $router->get('/{id}', 'CandidatoIndicadorController@index');
     });
 
 });
