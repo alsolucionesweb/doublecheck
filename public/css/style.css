@@ -517,7 +517,8 @@ p.card-text {
 
 #content-tendencia img,
 .content-candidato img,
-.accordion-body img {
+.accordion-body img,
+#contenidoPreview img {
     max-width: 100%;
     height: auto;
 }

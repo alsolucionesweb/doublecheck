@@ -9,7 +9,7 @@
     <div class="card">
         <div class="card-body">
             <nav id="navbar-example2" class="navbar bg-danger-subtle px-3 mb-3">
-                <div class="navbar-brand">Configuración de indicadores</div>
+                <div class="navbar-brand">Configuración de tendencias</div>
                 <ul class="nav nav-pills">                    
                     <li class="nav-item">
                         <a class="nav-link" role="button" data-bs-toggle="modal" data-bs-target="#modalCrear">
@@ -25,7 +25,7 @@
                   <thead class="table-light">
                       <tr>
                           <th scope="col">ID</th>
-                          <th scope="col">INDICADOR</th>
+                          <th scope="col">TITULO</th>
                           <th scope="col">CONTENIDO</th>
                           <th class="text-center" scope="col">ESTADO</th>
                           <th class="text-center" scope="col">ACCIONES</th>
@@ -39,9 +39,9 @@
                                 {{ $tendencia->titulo }}
                               </td>       
                               <td>
-                                <div class="border rounded p-3 mt-3 bg-white">
-                                {!! $tendencia->contenido !!}
-                              </div>
+                                <button type="button" class="btn btn-primary" onclick="verContenido({{ $tendencia }})">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
                               </td>                       
                               <td class="text-center">@if ($tendencia->estado)
                                   <div class="p-3 text-success-emphasis bg-success-subtle border border-success-subtle rounded-3 text-center">
@@ -76,7 +76,7 @@
 <!-- Modal Crear -->
 
 <div class="modal fade" id="modalCrear" tabindex="-1" aria-labelledby="modalCrearLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog max-w">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="modalCrearLabel">Nueva Tendencia</h1>
@@ -125,7 +125,7 @@
 
 <!-- Modal Editar-->
 <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog max-w">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="modalEditarLabel">Editar Tendencia</h1>
@@ -193,6 +193,29 @@
         </div>
       </form>
       
+    </div>
+  </div>
+</div>
+
+<!-- Modal verContenidoPreview -->
+<div class="modal fade" id="modalContenidoPreview" tabindex="-1" aria-labelledby="modalContenidoPreviewLabel" aria-hidden="true">
+  <div class="modal-dialog max-w">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="modalContenidoPreviewLabel">Contenido</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>        
+      <div class="modal-body">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-header mb-3" id="tendenciaPreviewContenido"></h5>
+            <div id="contenidoPreview"></div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">        
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>        
+      </div>      
     </div>
   </div>
 </div>

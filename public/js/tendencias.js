@@ -29,3 +29,14 @@ function eliminarTendencia(params) {
     })
     modalEliminar.show();
 }
+
+function verContenido(params) {
+    
+    document.querySelector('#tendenciaPreviewContenido').innerHTML = params.titulo;
+    document.querySelector('#contenidoPreview').innerHTML = params.contenido;
+
+    const modal = new bootstrap.Modal('#modalContenidoPreview', {
+        keyboard: false
+    })
+    modal.show();
+}
